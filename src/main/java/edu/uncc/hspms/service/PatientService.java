@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import java.util.Observable;
+
+
 import java.util.UUID;
 
 import javax.sql.DataSource;
@@ -14,8 +15,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-
-import com.mysql.jdbc.Connection;
 
 import edu.uncc.hspms.model.Encoutnter;
 import edu.uncc.hspms.model.Observation;
@@ -34,7 +33,9 @@ public class PatientService {
 		Patient p = new Patient();
 		p.setName("Prakash from service");
 		p.setAddress("UT from service");
-
+	/*	UUID u =UUID.randomUUID();
+        String randomUUIDString = u.toString();
+		  System.out.println(randomUUIDString);
 		try {
 			if (dataSource.getConnection() != null)
 				System.out.println("found db connection");
@@ -58,25 +59,27 @@ public class PatientService {
 					new BeanPropertyRowMapper<Patient>(Patient.class));
 		} catch (DataAccessException dae) {
 			dae.printStackTrace();
-		}
+		} 
+		*/
 		return p;
 	}
 
-	private void addPatient(Patient patient) {
+/*	private void addPatient(Patient patient) {
 		String sql = "insert into patient(name,address) values(?,?)";
-		UUID sample_UUID= UUID.randomUUID();
-		System.out.println("Sample UUID: "+sample_UUID);
+		//UUID sample_UUID= UUID.randomUUID();
+		//System.out.println("Sample UUID: "+sample_UUID);
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		int count = jdbcTemplate.update(sql, patient.getName(),
 				patient.getAddress());
 		System.out.println("addPost count=" + count);
 	}
-	
+*/
 	public void addChartReview(int patient_id,String chartReview) throws SQLException {
 	 //	 int encounter_id=0;
 	 //    int obs_id=0;
 	 //    int visit_id=0;
-		String uuid="9e91c11d-877a-4b20-a851-c7ea0cda5da7";
+		UUID u =UUID.randomUUID();
+		String uuid=u.toString();
 		Visit visit=new Visit();
 	     Encoutnter encounter= new Encoutnter();
 	     Observation observation = new Observation();
